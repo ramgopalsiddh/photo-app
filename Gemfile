@@ -35,6 +35,23 @@ gem "jbuilder"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
+# Add Devise Gem for authentication [https://github.com/heartcombo/devise]
+gem 'devise'
+
+# style authantication using devise and bootstrap. Add Gem's and Run this Command [rails generate devise:views:bootstrap]
+gem "devise-i18n"
+
+gem "devise-bootstrap5"
+
+
+# Gem for style sheets [https://github.com/twbs/bootstrap-rubygem]
+gem 'bootstrap', '~> 5.3.2'
+
+gem 'jquery-rails'
+
+gem 'dartsass-sprockets'
+
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
