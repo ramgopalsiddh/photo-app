@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <%= link_to 'Photo App', root_path, class: 'navbar-brand'%>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" >
+            <%= link_to 'My Portfolio', '#', class: "nav-link#{' active' if current_page?('#')}" %>
+          </li>
+          <li class="nav-item" >
+            <%= link_to 'My Friends', '#', class: "nav-link#{' active' if current_page?('#')}" %>
+          </li>
+          <li class="nav-item" >
+            <%= link_to  edit_user_registration_path, class: "nav-link#{' active' if current_page?(edit_user_registration_path)}" do%>
+              Edit Profile 
+            <% end %>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav mi-auto">
+          <%if current_user %> 
+            <li class="nav-item user-name me-2 mt-2">
+              <%= current_user.email %>
+            </li>
+            <li class="nav-item me-2">
+              <%= button_to("Log Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger') %>
+          <% else %>
+              <%= button_to 'Login', new_user_session_path, method: :get, class: 'btn btn-primary ' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+  </div>
+</nav>
