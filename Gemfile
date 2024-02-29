@@ -51,6 +51,8 @@ gem 'jquery-rails'
 
 gem 'dartsass-sprockets'
 
+# strip gem for payment [https://github.com/stripe/stripe-ruby]
+gem 'stripe'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
