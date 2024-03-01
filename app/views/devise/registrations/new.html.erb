@@ -1,8 +1,12 @@
+<script language="javascript">
+  Stripe.setPublishableKey("<%= Rails.application.credentials.stripe[:publishable_key] %>");
+</script>
+
 <div class="row">
   <div class="col-md-6">
     <h2 class="pb-4"><%= t('.sign_up') %></h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: "form", class: "cc_form" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-3">
