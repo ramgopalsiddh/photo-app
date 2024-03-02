@@ -20,6 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
             currency: 'usd',
             description: 'Premium Membership',
             confirmation_method: 'automatic',
+            # TODO : Add dynamic payment method this is fix at (visa credit card)
             payment_method: 'pm_card_visa'
           )
 
