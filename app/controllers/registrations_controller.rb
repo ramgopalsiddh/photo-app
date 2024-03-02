@@ -7,20 +7,36 @@ class RegistrationsController < Devise::RegistrationsController
       resource.save
       yield resource if block_given?
       if resource.persisted?
-        @payment = Payment.new({ email: params["user"]["email"],
-         token: params[:payment]["token"], user_id: resource.id })
+        @user_payment = Payment.new(email: params["user"]["email"],
+                                    token: params[:payment]["token"],
+                                    user_id: resource.id)
 
-        flash[:error] = "Please check registration errors" unless @payment.valid?
+        flash[:error] = "Please check registration errors" unless @user_payment.valid?
 
         begin
-          @payment.process_payment
-          @payment.save
-        rescue Exception => e
-            flash[:error] = e.message
+          # Use Payment Intents (assuming Stripe integration)
+          intent = Stripe::PaymentIntent.create(
+            amount: 1000,
+            currency: 'usd',
+            description: 'Premium Membership',
+            confirmation_method: 'automatic'
+          )
 
-            resource.destroy
-            puts 'Payment failed'
-            render :new and return
+          # Client-side confirmation would happen here (using Stripe.js)
+
+          # Capture payment after confirmation
+          intent.capture if intent.status == 'succeeded'
+          @user_payment.save!
+        rescue Stripe::StripeError => e
+          Rails.logger.error "Stripe Error: #{e.message}"
+          flash[:error] = "Payment failed: #{e.message}"
+          resource.destroy
+          render :new and return
+        rescue Exception => e
+          Rails.logger.error "Payment Processing Error: #{e.message}"
+          flash[:error] = "An unexpected error occurred during registration"
+          resource.destroy
+          render :new and return
         end
 
         if resource.active_for_authentication?
@@ -46,5 +62,4 @@ class RegistrationsController < Devise::RegistrationsController
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:payment)
   end
-
 end
