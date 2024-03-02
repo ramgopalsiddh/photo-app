@@ -14,12 +14,13 @@ class RegistrationsController < Devise::RegistrationsController
         flash[:error] = "Please check registration errors" unless @user_payment.valid?
 
         begin
-          # Use Payment Intents (assuming Stripe integration)
+          # Use Payment Intents
           intent = Stripe::PaymentIntent.create(
             amount: 1000,
             currency: 'usd',
             description: 'Premium Membership',
-            confirmation_method: 'automatic'
+            confirmation_method: 'automatic',
+            payment_method: 'pm_card_visa'
           )
 
           # Client-side confirmation would happen here (using Stripe.js)

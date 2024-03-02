@@ -46,7 +46,9 @@ class Payment < ApplicationRecord
     Stripe::Charge.create({
       amount: 1000,
       currency: 'usd',
-      description: description,
+      description: 'Premium Membership',
+      confirmation_method: 'automatic',
+      payment_method: 'pm_card_visa',
       customer: customer.id
     })
   end
