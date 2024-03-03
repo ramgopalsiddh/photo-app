@@ -43,9 +43,20 @@ gem "devise-i18n"
 
 gem "devise-bootstrap5"
 
+# Image uploder gem [https://github.com/carrierwaveuploader/carrierwave]
+gem 'carrierwave'
+
+# Image resizeing gem [https://github.com/minimagick/minimagick]
+gem "mini_magick"
+
+# Fog for use cloud in production [https://github.com/fog/fog]
+gem 'fog'
 
 # Gem for style sheets [https://github.com/twbs/bootstrap-rubygem]
 gem 'bootstrap', '~> 5.3.2'
+
+# form genrater 
+# gem "bootstrap_form", "~> 5.4"
 
 gem 'jquery-rails'
 
