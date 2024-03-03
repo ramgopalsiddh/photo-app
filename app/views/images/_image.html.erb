@@ -1,17 +1,17 @@
 <div id="<%= dom_id image %>">
-  <p>
-    <strong>Name:</strong>
+  <h5>
+    <strong>Name :</strong>
     <%= link_to image.name, image_path(image) %>
-  </p>
+  </h5>
+  <h5>
+    <strong>User Email : </strong>
+    <%= image.user&.email %>
+  </h5>
 
   <p>
-    <strong>Picture:</strong>
-    <%= image_tag image.picture.url, size: "450x270" if image.picture? %>
+    <%= image_tag image.picture.url, size: "800x500", style: "border: 2px solid black;" if image.picture? %>
   </p>
 
-  <p>
-    <strong>User:</strong>
-    <%= image.user_id %>
-  </p>
+
 
 </div>

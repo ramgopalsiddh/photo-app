@@ -1,14 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <p class="text-success"><%= notice %></p>
 
-<h1>Images</h1>
+  <h1>Images</h1>
 
-<div id="images">
-  <% @images.each do |image| %>
-    <%= render image %>
-    <p>
-      <%= link_to "Show this image", image %>
-    </p>
-  <% end %>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Picture</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @images.each do |image| %>
+            <tr id="<%= dom_id(image) %>">
+              <td><h4><%= link_to image.name, image_path(image), class: "text-decoration-none" %></h4></td>
+              <td>
+                <%= link_to image_path(image) do %>
+                  <%= image_tag image.picture.url, size: "150x100", style: "border: 1px solid black;"  if image.picture? %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "Show Image", image, class: "btn btn-primary btn-sm me-3" %>
+                <%= link_to "Edit Image", edit_image_path(image), class: "btn btn-secondary btn-sm me-3" %>
+                <%= link_to "Delete Image", image, class: "btn btn-danger btn-sm", data: { turbo_method: :delete, "turbo-confirm": "Are you sure you want to delete this image?" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%= link_to "Add New Image", new_image_path, class: "btn btn-success" %>
 </div>
-
-<%= link_to "New image", new_image_path %>
