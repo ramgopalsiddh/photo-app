@@ -7,11 +7,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" >
-            <%= link_to 'My Portfolio', '#', class: "nav-link#{' active' if current_page?('#')}" %>
+            <%= link_to 'All Images', images_path, class: "nav-link#{' active' if current_page?(images_path)}" %>
           </li>
-          <li class="nav-item" >
-            <%= link_to 'My Friends', '#', class: "nav-link#{' active' if current_page?('#')}" %>
-          </li>
+
           <li class="nav-item" >
             <%= link_to  edit_user_registration_path, class: "nav-link#{' active' if current_page?(edit_user_registration_path)}" do%>
               Edit Profile 
