@@ -17,8 +17,20 @@
     <div class="container">
       <!-- Render Navigation Bar -->
       <%= render 'layouts/navigation' %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
+      <!-- show alert and errer-->
+      <div class="row">
+        <div class="col-md-6">
+          <% if notice.present? %>
+            <p class="alert alert-success mt-4"><%= notice %></p>
+          <% end %>
+
+          <% if alert.present? %>
+            <p class="alert alert-danger mt-4"><%= alert %></p>
+          <% end %>
+        </div>
+      </div>
+      
       <%= yield %>
     </div>
 
